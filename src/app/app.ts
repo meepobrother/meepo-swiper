@@ -7,7 +7,7 @@ import { LoaderModule } from 'meepo-loader';
     imports: [
         CommonModule,
         LoaderModule.forRoot({
-            root: './assets/meepo.libs/swiper/'
+            root: './assets/meepo.libs/'
         })
     ],
     exports: [

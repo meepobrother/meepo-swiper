@@ -22,7 +22,7 @@ export class SwiperComponent implements AfterContentInit {
     ) { }
 
     ngAfterContentInit() {
-        this.loader.importLocals(['./js/swiper.min.js']).subscribe(res => {
+        this.loader.importLocals(['./swiper/js/swiper.min.js']).subscribe(res => {
             this.swiper = new Swiper(this.ele.nativeElement);
         });
     }
