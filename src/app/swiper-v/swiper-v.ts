@@ -54,7 +54,9 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
     slideTo(index: number, slideToOption?: string) {
         this.slideToOption = slideToOption;
         if (index < 0) { } else {
-            this.swiper.slideTo(index, 600, false);
+            if (this.swiper) {
+                this.swiper.slideTo(index, 600, false);
+            }
         }
     }
     slideIndex: number = 0;

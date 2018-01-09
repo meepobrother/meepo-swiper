@@ -61,7 +61,9 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
     slideTo(index: number, slideToOption?: string) {
         this.slideToOption = slideToOption;
         if (index < 0) { } else {
-            this.swiper.slideTo(index, 600, false);
+            if (this.swiper) {
+                this.swiper.slideTo(index, 600, false);
+            }
         }
     }
     slideIndex: number = 0;
@@ -84,7 +86,7 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
                     slideToClickedSlide: true,
                     loop: false,
                     on: {
-                        init: function(){
+                        init: function () {
                             that.init.emit(this);
                             that.left.show();
                             that.right.show();
