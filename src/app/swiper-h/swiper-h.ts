@@ -32,6 +32,11 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
         this.left && this.left.setWidth(width);
         this.right && this.right.setWidth(width);
     }
+    @Input()
+    set width(val: string) {
+        this.left && this.left.setWidth(val);
+        this.right && this.right.setWidth(val);
+    }
     @Input() options: any;
     constructor(
         private el: ElementRef,
