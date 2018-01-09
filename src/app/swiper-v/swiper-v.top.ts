@@ -10,5 +10,6 @@ export class SwiperTopDirective {
 
     setHeight(val) {
         this.render.setStyle(this.ele.nativeElement, 'height', val);
+        this.render.addClass(this.ele.nativeElement, 'shown');
     }
 }

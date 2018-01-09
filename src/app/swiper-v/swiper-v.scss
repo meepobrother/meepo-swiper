@@ -6,6 +6,12 @@ swiper-v {
     [swiperBottom] {
         background-color: #fff;
         height: 80%;
+        visibility: hidden;
+        opacity: 0;
+        &.shown {
+            visibility: visible;
+            opacity: 1;
+        }
     }
     [swiperBody] {
         height: 80%;
