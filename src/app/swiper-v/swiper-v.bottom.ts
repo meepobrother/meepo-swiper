@@ -10,6 +10,8 @@ export class SwiperBottomDirective {
 
     setHeight(val) {
         this.render.setStyle(this.ele.nativeElement, 'height', val);
-        this.render.addClass(this.ele.nativeElement, 'shown');
+        setTimeout(() => {
+            this.render.addClass(this.ele.nativeElement, 'shown');
+        }, 300);
     }
 }
