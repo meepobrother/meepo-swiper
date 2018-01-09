@@ -19,7 +19,7 @@ import { SwiperMenuRightDirective } from './swiper-h.right';
     styleUrls: ['./swiper-h.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class SwiperMenuComponent implements OnInit, AfterViewInit {
+export class SwiperHComponent implements OnInit, AfterViewInit {
     @HostBinding('class.swiper-container') _container: boolean = true;
     @HostBinding('class.swiper-container-horizontal') _horizontal: boolean = true;
 

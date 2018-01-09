@@ -2,8 +2,10 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SwiperComponent } from './swiper/swiper';
 import { SwiperTabsComponent } from './swiper-tabs/swiper-tabs';
-import { SwiperMenuComponent } from './swiper-h/swiper-h';
+
+import { SwiperHComponent } from './swiper-h/swiper-h';
 import { SwiperVComponent } from './swiper-v/swiper-v';
+
 import { SwiperBodyDirective } from './swiper-v/swiper-v.body';
 import { SwiperBottomDirective } from './swiper-v/swiper-v.bottom';
 import { SwiperTopDirective } from './swiper-v/swiper-v.top';
@@ -30,7 +32,7 @@ import { EventModule } from 'meepo-event';
     exports: [
         SwiperComponent,
         SwiperTabsComponent,
-        SwiperMenuComponent,
+        SwiperHComponent,
         SwiperMenuCenterDirective,
         SwiperMenuLeftDirective,
         SwiperMenuRightDirective,
@@ -42,7 +44,7 @@ import { EventModule } from 'meepo-event';
     declarations: [
         SwiperComponent,
         SwiperTabsComponent,
-        SwiperMenuComponent,
+        SwiperHComponent,
         SwiperMenuCenterDirective,
         SwiperMenuLeftDirective,
         SwiperMenuRightDirective,
@@ -71,3 +73,6 @@ export class SwiperModule {
 
 export { SwiperComponent } from './swiper/swiper';
 export { SwiperConfig } from './swiper/swiper.config';
+
+export { SwiperHComponent } from './swiper-h/swiper-h';
+export { SwiperVComponent } from './swiper-v/swiper-v';
