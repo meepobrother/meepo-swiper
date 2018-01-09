@@ -26,7 +26,12 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
     @ContentChild(SwiperMenuCenterDirective) center: SwiperMenuCenterDirective;
     @ContentChild(SwiperMenuLeftDirective) left: SwiperMenuLeftDirective;
     @ContentChild(SwiperMenuRightDirective) right: SwiperMenuRightDirective;
-
+    @Input()
+    set offset(val: any) {
+        let width = `calc(100% - ${val}px)`;
+        this.left && this.left.setWidth(width);
+        this.right && this.right.setWidth(width);
+    }
     @Input() options: any;
     constructor(
         private el: ElementRef,
@@ -70,7 +75,7 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
                     slideToClickedSlide: true,
                     loop: false,
                     on: {
-                        init: ()=>{
+                        init: () => {
                             this.left.show();
                             this.right.show();
                         }

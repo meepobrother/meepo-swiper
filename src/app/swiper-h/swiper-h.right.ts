@@ -11,4 +11,8 @@ export class SwiperMenuRightDirective {
     show() {
         this.render.addClass(this.ele.nativeElement, 'shown');
     }
+
+    setWidth(val: string) {
+        this.render.setStyle(this.ele.nativeElement, 'width', val);
+    }
 }
