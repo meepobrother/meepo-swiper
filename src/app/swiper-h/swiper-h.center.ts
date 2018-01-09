@@ -1,5 +1,7 @@
 import { Directive, HostBinding, HostListener } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
+
 
 @Directive({ selector: '[swiperCenter]' })
 export class SwiperMenuCenterDirective {
@@ -11,7 +13,7 @@ export class SwiperMenuCenterDirective {
     click$: Subject<any> = new Subject();
     constructor() { }
 
-    clickBack(call: Function) {
+    clickBack(call: any): Subscription {
         return this.click$.subscribe(res => {
             call(res);
         });
