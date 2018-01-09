@@ -114,9 +114,13 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
         });
     }
     __init() {
-        this.loader.importLocals(['./swiper/js/swiper.min.js']).subscribe(res => {
+        if (window['Swiper']) {
             this._init();
-        });
+        } else {
+            this.loader.importLocals(['./swiper/js/swiper.min.js']).subscribe(res => {
+                this._init();
+            });
+        }
     }
     ngOnChanges(changes: SimpleChanges): void {
         if ('options' in changes) {
