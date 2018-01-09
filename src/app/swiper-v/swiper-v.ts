@@ -83,13 +83,12 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
                         init: function () {
                             that.bottom && this.bottom.show();
                             that.top && this.top.show();
-                            that.init.emit(this);
-                            that.swiper = this;
                         }
                     }
                 }
             }
             this.swiper = new Swiper(this.el.nativeElement, this.options);
+            this.init.emit(this.swiper);
         });
     }
     private destroy() {

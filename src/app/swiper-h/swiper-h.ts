@@ -87,8 +87,6 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
                     loop: false,
                     on: {
                         init: function () {
-                            that.init.emit(this);
-                            that.swiper = this;
                             that.left.show();
                             that.right.show();
                         }
@@ -96,6 +94,7 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
                 }
             }
             this.swiper = new Swiper(this.el.nativeElement, this.options);
+            this.init.emit(this.swiper);
         });
     }
     private destroy() {
