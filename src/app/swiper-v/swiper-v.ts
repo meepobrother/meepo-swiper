@@ -34,6 +34,10 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
     }
     @Input() options: any;
     @Output() init: EventEmitter<any> = new EventEmitter();
+    /**
+     * swiper 实例
+     */
+    swiper: any;
     constructor(
         private el: ElementRef,
         private zone: NgZone,
@@ -42,21 +46,15 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
         public render: Renderer2,
         public cd: ChangeDetectorRef
     ) { }
-    /**
-     * swiper 实例
-     */
-    swiper: any;
+
     private initOptions() {
         this.options = Object.assign({}, this.DEF.options, this.options);
     }
     // 滑动到制定index
     slideToOption: string;
-    slideTo(index: number, slideToOption?: string) {
-        this.slideToOption = slideToOption;
-        if (index < 0) { } else {
-            if (this.swiper) {
-                this.swiper.slideTo(index, 600, false);
-            }
+    slideTo(index: number) {
+        if (this.swiper) {
+            this.swiper.slideTo(index, 600, false);
         }
     }
     slideIndex: number = 0;
