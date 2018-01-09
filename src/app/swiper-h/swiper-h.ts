@@ -105,7 +105,6 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         if (!this.options) this.initOptions();
     }
-    width: number;
     ngAfterViewInit() {
         this.loader.importLocals(['./swiper/js/swiper.min.js']).subscribe(res => {
             this._init();
