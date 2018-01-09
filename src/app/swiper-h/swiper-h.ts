@@ -88,6 +88,7 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
                     on: {
                         init: function () {
                             that.init.emit(this);
+                            that.swiper = this;
                             that.left.show();
                             that.right.show();
                         }

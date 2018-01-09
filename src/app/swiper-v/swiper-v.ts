@@ -69,6 +69,7 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
         this.destroy();
         this.zone.runOutsideAngular(() => {
             this.getSlideIndex();
+            const that = this;
             this.options = {
                 ...this.options,
                 ...{
@@ -79,10 +80,11 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
                     loop: false,
                     direction: 'vertical',
                     on: {
-                        init: () => {
-                            this.bottom && this.bottom.show();
-                            this.top && this.top.show();
-                            this.init.emit(this.swiper);
+                        init: function () {
+                            that.bottom && this.bottom.show();
+                            that.top && this.top.show();
+                            that.init.emit(this);
+                            that.swiper = this;
                         }
                     }
                 }
