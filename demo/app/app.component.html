@@ -1,9 +1,42 @@
-<minirefresh-default (down)="down($event)" (up)="up($event)">
-    <swiper [items]="advs" debuger>
-        <ng-template #ref let-item>
+<!-- <div #header class="header-advs">
+    <swiper [items]="advs">
+        <ng-template let-item>
             <img [src]="item.image">
         </ng-template>
     </swiper>
-    <charm [items]="charms"></charm>
-    <article-list [items]="items"></article-list>
-</minirefresh-default>
+</div>
+<div class="main" [style.height]="mainHeight">
+    <swiper #mainContainer [items]="footers" [options]="mainOptions" (touchStart)="touchStartMain($event)" (init)="initMain($event)"
+        (slideChange)="doMainItem($event)">
+
+    </swiper>
+</div> -->
+
+<!-- <div class="h2">
+    hahah
+</div>
+<swiper-tabs [tabs]="footers">
+    <ng-template>
+        <minirefresh-default (down)="down($event)" (up)="up($event)">
+            <article-list [items]="items"></article-list>
+        </minirefresh-default>
+    </ng-template>
+</swiper-tabs>
+
+<div class="h2">
+    hahah
+</div> -->
+
+<swiper-h>
+    <div swiperLeft></div>
+    <div swiperCenter>
+        
+    </div>
+    <div swiperRight></div>
+</swiper-h>
+<!-- 
+<swiper-v offset="88">
+    <div swiperTop></div>
+    <div swiperBody></div>
+    <div swiperBottom></div>
+</swiper-v> -->

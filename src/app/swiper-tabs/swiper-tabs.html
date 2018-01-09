@@ -1,0 +1,21 @@
+<div #header class="header-advs">
+    <div class="header-navs">
+        <div class="header-navs-item">
+            <span>全部</span>
+        </div>
+        <swiper [items]="tabs" (init)="initFooter($event)" (touchStart)="touchStartFooter($event)" (slideChange)="doFooterItem($event)"
+            [options]="footerOptions">
+            <ng-template let-item>
+                <p>{{item.title}}</p>
+            </ng-template>
+        </swiper>
+        <div class="header-navs-content"></div>
+    </div>
+</div>
+<div class="main" [style.height]="mainHeight">
+    <swiper [items]="tabs" [options]="mainOptions" (touchStart)="touchStartMain($event)" (init)="initMain($event)" (slideChange)="doMainItem($event)">
+        <ng-template let-item>
+            <ng-container *ngTemplateOutlet="_ref;context: {$implicit: item}"></ng-container>
+        </ng-template>
+    </swiper>
+</div>

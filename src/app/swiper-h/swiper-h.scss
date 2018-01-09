@@ -1,0 +1,13 @@
+swiper-h {
+    width: 100%;
+    height: 100%;
+    display: block;
+    [swiperLeft],[swiperRight] {
+        min-width: 100px;
+        width: 70%;
+        background-color: #fff;
+    }
+    [swiperCenter] {
+        width: 100%;
+    }
+}

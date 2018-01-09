@@ -1,5 +1,6 @@
 <div class="swiper-wrapper">
-    <div class="swiper-slide" *ngFor="let item of items">
+    <div class="swiper-slide" [attr.data-hash]="item.link" *ngFor="let item of items">
         <ng-container *ngTemplateOutlet="_ref;context: {$implicit: item}"></ng-container>
     </div>
 </div>
+<ng-content></ng-content>

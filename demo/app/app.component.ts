@@ -1,7 +1,10 @@
 import {
-  Component, ChangeDetectionStrategy, ChangeDetectorRef
+  Component, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation,
+  ViewChild, AfterViewInit
 } from '@angular/core';
-
+import { Subject } from 'rxjs/Subject';
+import { SwiperComponent } from '../../src/app/app';
+declare const Swiper: any;
 
 let charms: any[] = [{
   title: '标题1',
@@ -91,43 +94,103 @@ let items = [{
   link: ''
 }];
 
+import { Router } from '@angular/router';
+import { Index1Component } from './index1/index1';
+import { Index2Component } from './index1/index2';
+import { Index3Component } from './index1/index3';
+import { Index4Component } from './index1/index4';
+import { Index5Component } from './index1/index5';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+  @ViewChild('footerContainer') footerContainer: SwiperComponent;
+  @ViewChild('mainContainer') mainContainer: SwiperComponent;
+
+
 
   advs: any[] = [{
     image: 'https://bpic.588ku.com/element_banner/20/18/01/30e45fbaed76c6d9e1c75f81cbe4e324.jpg',
   }, {
     image: 'https://bpic.588ku.com/element_banner/20/18/01/1f074dddcd63a3356376372985d48bea.jpg',
+  }, {
+    image: 'https://bpic.588ku.com/element_banner/20/18/01/30e45fbaed76c6d9e1c75f81cbe4e324.jpg',
+  }, {
+    image: 'https://bpic.588ku.com/element_banner/20/18/01/1f074dddcd63a3356376372985d48bea.jpg',
+  }, {
+    image: 'https://bpic.588ku.com/element_banner/20/18/01/30e45fbaed76c6d9e1c75f81cbe4e324.jpg',
+  }, {
+    image: 'https://bpic.588ku.com/element_banner/20/18/01/1f074dddcd63a3356376372985d48bea.jpg',
+  }, {
+    image: 'https://bpic.588ku.com/element_banner/20/18/01/30e45fbaed76c6d9e1c75f81cbe4e324.jpg',
+  }, {
+    image: 'https://bpic.588ku.com/element_banner/20/18/01/1f074dddcd63a3356376372985d48bea.jpg',
+  }];
+
+  footers: any[] = [{
+    title: '首页1',
+    active: true,
+  }, {
+    title: '首页2',
+    active: false,
+  }, {
+    title: '首页3',
+    active: false,
+  }, {
+    title: '首页4',
+    active: false,
+  }, {
+    title: '首页5',
+    active: false,
+  }, {
+    title: '首页1',
+    active: true,
+  }, {
+    title: '首页2',
+    active: false,
+  }, {
+    title: '首页3',
+    active: false,
+  }, {
+    title: '首页4',
+    active: false,
+  }, {
+    title: '首页5',
+    active: false,
   }];
 
   items: any[] = [];
   charms: any[] = [];
 
-  constructor(
-    public cd: ChangeDetectorRef
-  ) {
 
-  }
+  constructor(
+    public cd: ChangeDetectorRef,
+    public router: Router
+  ) { }
+
+  ngAfterViewInit() { }
+
 
   up(e: any) {
     let hasMore = false;
     this.items = [...this.items, ...items];
     // 是否还有更多了
-    console.log('load');
     e.next(hasMore);
     this.cd.markForCheck();
   }
 
+
+
   down(e: any) {
     this.items = items;
     this.charms = charms;
-    console.log('refresh');
     e.next(false);
     this.cd.markForCheck();
   }
+
 }
