@@ -74,6 +74,7 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
         this.destroy();
         this.zone.runOutsideAngular(() => {
             this.getSlideIndex();
+            const that = this;
             this.options = {
                 ...this.options,
                 ...{
@@ -83,10 +84,10 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
                     slideToClickedSlide: true,
                     loop: false,
                     on: {
-                        init: () => {
-                            this.init.emit(this.swiper);
-                            this.left.show();
-                            this.right.show();
+                        init: function(){
+                            that.init.emit(this);
+                            that.left.show();
+                            that.right.show();
                         }
                     }
                 }
