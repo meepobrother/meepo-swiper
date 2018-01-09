@@ -4,13 +4,12 @@ import { Injectable } from '@angular/core';
 export class SwiperConfig {
     constructor() { }
     options: any = {
-        loop: true,
+        loop: false,
         pagination: {
             el: '.swiper-pagination',
         },
         scrollbar: {
             el: '.swiper-scrollbar',
-        },
-        slideToClickedSlide: true
+        }
     };
 }
