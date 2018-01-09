@@ -76,7 +76,6 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
         this.zone.runOutsideAngular(() => {
             this.getSlideIndex();
             this.options = {
-                ...this.options,
                 ...{
                     initialSlide: this.slideIndex,
                     slidesPerView: 'auto',
@@ -89,7 +88,8 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
                             this.right && this.right.show();
                         }
                     }
-                }
+                },
+                ...this.options
             }
             this.swiper = new Swiper(this.el.nativeElement, this.options);
             this.init.emit(this.swiper);

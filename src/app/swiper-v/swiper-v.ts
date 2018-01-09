@@ -68,7 +68,6 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
         this.zone.runOutsideAngular(() => {
             this.getSlideIndex();
             this.options = {
-                ...this.options,
                 ...{
                     initialSlide: this.slideIndex,
                     slidesPerView: 'auto',
@@ -82,7 +81,8 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
                             this.top && this.top.show();
                         }
                     }
-                }
+                },
+                ...this.options
             }
             this.swiper = new Swiper(this.el.nativeElement, this.options);
             this.init.emit(this.swiper);
