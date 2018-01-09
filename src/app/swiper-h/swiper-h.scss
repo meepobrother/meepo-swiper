@@ -6,6 +6,12 @@ swiper-h {
         min-width: 100px;
         width: 70%;
         background-color: #fff;
+        visibility: hidden;
+        opacity: 0;
+        &.shown {
+            visibility: visible;
+            opacity: 1;
+        }
     }
     [swiperCenter] {
         width: 100%;

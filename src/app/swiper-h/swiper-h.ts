@@ -68,7 +68,13 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
                     slidesPerView: 'auto',
                     resistanceRatio: 0,
                     slideToClickedSlide: true,
-                    loop: false
+                    loop: false,
+                    on: {
+                        init: ()=>{
+                            this.left.show();
+                            this.right.show();
+                        }
+                    }
                 }
             }
             this.swiper = new Swiper(this.el.nativeElement, this.options);
