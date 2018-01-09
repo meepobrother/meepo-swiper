@@ -54,7 +54,7 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
         public cd: ChangeDetectorRef
     ) { }
 
-    
+
     private initOptions() {
         this.options = Object.assign({}, this.DEF.options, this.options);
     }
@@ -108,18 +108,21 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
         if (!this.options) this.initOptions();
     }
     ngAfterViewInit() {
-        this.loader.importLocals(['./swiper/js/swiper.min.js']).subscribe(res => {
-            this._init();
-        });
+
         this.center.clickBack(res => {
             this.swiper.slideTo(this.slideIndex, 300);
+        });
+    }
+    __init() {
+        this.loader.importLocals(['./swiper/js/swiper.min.js']).subscribe(res => {
+            this._init();
         });
     }
     ngOnChanges(changes: SimpleChanges): void {
         if ('options' in changes) {
             this.initOptions();
             if (!changes['options'].firstChange) {
-                this._init();
+                this.__init();
             }
         }
     }
