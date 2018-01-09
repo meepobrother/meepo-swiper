@@ -27,11 +27,12 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
     @ContentChild(SwiperBottomDirective) bottom: SwiperBottomDirective;
     @Input()
     set offset(val: any) {
-        let height = `calc(100% - ${val}px)`;
-        this.body && this.body.setHeight(height);
-        this.top && this.top.setHeight(height);
-        this.bottom && this.bottom.setHeight(height);
+        
+        this.body && this.body.setHeight(val, this.absolute);
+        this.top && this.top.setHeight(val, this.absolute);
+        this.bottom && this.bottom.setHeight(val, this.absolute);
     }
+    @Input() absolute: boolean = false;
     @Input() options: any;
     @Output() init: EventEmitter<any> = new EventEmitter();
     /**
@@ -76,7 +77,7 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
                     loop: false,
                     direction: 'vertical',
                     on: {
-                        init: ()=>{
+                        init: () => {
                             this.bottom && this.bottom.show();
                             this.top && this.top.show();
                         }

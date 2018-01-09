@@ -8,8 +8,13 @@ export class SwiperBodyDirective {
         public ele: ElementRef
     ) { }
 
-    setHeight(val) {
-        this.render.setStyle(this.ele.nativeElement, 'height', val);
-        this.render.setStyle(this.ele.nativeElement, 'transition', '1s');
+    setHeight(val, absolute: boolean = false) {
+        let height = `calc(100% - ${val}px)`;
+        if (absolute) {
+
+        } else {
+            this.render.setStyle(this.ele.nativeElement, 'height', val);
+            this.render.setStyle(this.ele.nativeElement, 'transition', '.3s');
+        }
     }
 }
