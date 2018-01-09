@@ -10,5 +10,6 @@ export class SwiperBodyDirective {
 
     setHeight(val) {
         this.render.setStyle(this.ele.nativeElement, 'height', val);
+        this.render.setStyle(this.ele.nativeElement, 'animation-duration', '1s');
     }
 }
