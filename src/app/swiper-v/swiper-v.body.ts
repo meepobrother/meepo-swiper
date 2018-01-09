@@ -13,7 +13,7 @@ export class SwiperBodyDirective {
         if (absolute) {
 
         } else {
-            this.render.setStyle(this.ele.nativeElement, 'height', val);
+            this.render.setStyle(this.ele.nativeElement, 'height', height);
             this.render.setStyle(this.ele.nativeElement, 'transition', '.3s');
         }
     }
