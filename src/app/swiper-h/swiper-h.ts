@@ -85,9 +85,9 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
                     slideToClickedSlide: true,
                     loop: false,
                     on: {
-                        init: function () {
-                            that.left.show();
-                            that.right.show();
+                        init: () => {
+                            this.left && this.left.show();
+                            this.right && this.right.show();
                         }
                     }
                 }
