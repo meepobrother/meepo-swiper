@@ -1,6 +1,6 @@
 {
     "name": "meepo-swiper",
-    "version": "3.3.3",
+    "version": "3.3.5",
     "description": "runner for angular",
     "main": "./bundles/meepo.umd.js",
     "module": "./esm5/meepo.js",
@@ -53,6 +53,7 @@
         "meepo-article": ">=1.1.3",
         "meepo-debuger": ">=1.1.6",
         "meepo-event": "^1.2.0",
+        "meepo-layout": "^1.6.5",
         "meepo-loader": ">=1.1.7",
         "meepo-minirefresh": ">=1.2.8",
         "reflect-metadata": "^0.1.10",

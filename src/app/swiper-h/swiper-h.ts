@@ -38,6 +38,8 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
         this.right && this.right.setWidth(val);
     }
     @Input() options: any;
+
+    @Output() init: EventEmitter<any> = new EventEmitter();
     constructor(
         private el: ElementRef,
         private zone: NgZone,
@@ -46,6 +48,7 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
         public render: Renderer2,
         public cd: ChangeDetectorRef
     ) { }
+
     /**
      * swiper 实例
      */
@@ -83,6 +86,7 @@ export class SwiperMenuComponent implements OnInit, AfterViewInit {
                         init: () => {
                             this.left.show();
                             this.right.show();
+                            this.init.emit(this.swiper);
                         }
                     }
                 }

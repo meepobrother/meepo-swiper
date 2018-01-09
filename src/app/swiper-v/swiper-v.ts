@@ -33,6 +33,7 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
         this.bottom && this.bottom.setHeight(height);
     }
     @Input() options: any;
+    @Output() init: EventEmitter<any> = new EventEmitter();
     constructor(
         private el: ElementRef,
         private zone: NgZone,
@@ -79,6 +80,7 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
                         init: () => {
                             this.bottom && this.bottom.show();
                             this.top && this.top.show();
+                            this.init.emit(this.swiper);
                         }
                     }
                 }
