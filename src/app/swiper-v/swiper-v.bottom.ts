@@ -10,7 +10,7 @@ export class SwiperBottomDirective {
 
     setHeight(val) {
         this.render.setStyle(this.ele.nativeElement, 'height', val);
-        this.render.setStyle(this.ele.nativeElement, 'animation-duration', '1s');
+        this.render.setStyle(this.ele.nativeElement, 'animation-duration', '5s');
     }
 
     show() {
