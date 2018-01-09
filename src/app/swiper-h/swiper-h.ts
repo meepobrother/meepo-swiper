@@ -8,6 +8,7 @@ import {
 import { SwiperConfig } from '../swiper/swiper.config';
 declare const Swiper: any;
 import { LoaderService } from 'meepo-loader';
+
 import { SwiperMenuCenterDirective } from './swiper-h.center';
 import { SwiperMenuLeftDirective } from './swiper-h.left';
 import { SwiperMenuRightDirective } from './swiper-h.right';
