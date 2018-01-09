@@ -162,9 +162,16 @@ export class SwiperComponent implements AfterViewInit, OnChanges, OnInit, OnDest
     }
     width: number;
     ngAfterViewInit() {
-        this.loader.importLocals(['./swiper/js/swiper.min.js']).subscribe(res => {
+        this.__init();
+    }
+    __init() {
+        if (window['Swiper']) {
             this._init();
-        });
+        } else {
+            this.loader.importLocals(['./swiper/js/swiper.min.js']).subscribe(res => {
+                this._init();
+            });
+        }
     }
     ngOnChanges(changes: SimpleChanges): void {
         if ('options' in changes) {

@@ -75,7 +75,6 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
         this.destroy();
         this.zone.runOutsideAngular(() => {
             this.getSlideIndex();
-            const that = this;
             this.options = {
                 ...this.options,
                 ...{
