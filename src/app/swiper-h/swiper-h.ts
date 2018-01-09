@@ -108,7 +108,7 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
         if (!this.options) this.initOptions();
     }
     ngAfterViewInit() {
-
+        this.__init();
         this.center.clickBack(res => {
             this.swiper.slideTo(this.slideIndex, 300);
         });

@@ -78,9 +78,9 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
                     loop: false,
                     direction: 'vertical',
                     on: {
-                        init: function () {
-                            that.bottom && this.bottom.show();
-                            that.top && this.top.show();
+                        init: ()=>{
+                            this.bottom && this.bottom.show();
+                            this.top && this.top.show();
                         }
                     }
                 }
@@ -100,11 +100,18 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         if (!this.options) this.initOptions();
     }
+    __init() {
+        if (window['Swiper']) {
+            this._init();
+        } else {
+            this.loader.importLocals(['./swiper/js/swiper.min.js']).subscribe(res => {
+                this._init();
+            });
+        }
+    }
     width: number;
     ngAfterViewInit() {
-        this.loader.importLocals(['./swiper/js/swiper.min.js']).subscribe(res => {
-            this._init();
-        });
+        this.__init();
     }
     ngOnChanges(changes: SimpleChanges): void {
         if ('options' in changes) {
