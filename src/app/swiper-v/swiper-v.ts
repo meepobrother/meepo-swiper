@@ -95,7 +95,7 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
                         init: () => {
                             this.bottom && this.bottom.show();
                             this.top && this.top.show();
-                        }, slideChange: () => {
+                        }, slideChangeTransitionStart: () => {
                             this.slideChange.emit(this.swiper);
                         },
                     }
