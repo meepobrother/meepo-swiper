@@ -1,7 +1,11 @@
 swiper-layout {
     display: block;
-    position: relative;
+    position: absolute;
     height: 100%;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    overflow: hidden;
     swiper {
         display: block;
         background: #fff;
