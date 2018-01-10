@@ -12,8 +12,6 @@ export class SwiperBodyDirective {
         let height = `calc(100% - ${val}px)`;
         if (absolute) {
             this.render.setStyle(this.ele.nativeElement, 'height', '100%');
-        } else {
-            this.render.setStyle(this.ele.nativeElement, 'height', height);
         }
         this.render.setStyle(this.ele.nativeElement, 'transition', '.3s');
     }
