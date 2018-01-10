@@ -97,9 +97,6 @@ export class SwiperScrollComponent implements OnInit, AfterViewInit {
                     observeParents: true,
                     freeModeMomentumBounce: true,
                     freeModeMomentum: true,
-                    scrollbar: {
-                        el: '.swiper-scrollbar',
-                    },
                     on: {
                         touchStart: () => {
                             that.refresh.html('松开刷新');
