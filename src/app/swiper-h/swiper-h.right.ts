@@ -15,6 +15,5 @@ export class SwiperMenuRightDirective {
 
     setWidth(val: string) {
         this.render.setStyle(this.ele.nativeElement, 'width', val);
-        this.render.setStyle(this.ele.nativeElement, 'transition', '.3s');
     }
 }
