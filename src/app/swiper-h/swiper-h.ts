@@ -83,8 +83,6 @@ export class SwiperHComponent implements OnInit, AfterContentInit {
         this.options = {
             ...{
                 initialSlide: 1,
-                slidesPerView: 'auto',
-                resistanceRatio: 0,
                 slideToClickedSlide: true,
                 loop: false,
                 observer: true,

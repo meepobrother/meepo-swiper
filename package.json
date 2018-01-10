@@ -1,6 +1,6 @@
 {
     "name": "meepo-swiper",
-    "version": "4.0.3",
+    "version": "4.0.4",
     "description": "runner for angular",
     "main": "./bundles/meepo.umd.js",
     "module": "./esm5/meepo.js",

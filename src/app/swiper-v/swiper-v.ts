@@ -87,9 +87,7 @@ export class SwiperVComponent implements OnInit, AfterContentInit {
         this.options = {
             ...{
                 initialSlide: 1,
-                slidesPerView: 'auto',
-                resistanceRatio: 0,
-                slideToClickedSlide: true,
+                slideToClickedSlide: false,
                 loop: false,
                 direction: 'vertical',
                 observer: true,
