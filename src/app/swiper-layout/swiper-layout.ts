@@ -41,6 +41,11 @@ export class SwiperLayoutComponent implements OnInit {
         this.init.emit(this.open$);
     }
 
+    update(){
+        this.hSwiper.update();
+        this.vSwiper.update();
+    }
+
     onHEnd(e: any) {
         if (e) {
             this.hSwiper = e;
