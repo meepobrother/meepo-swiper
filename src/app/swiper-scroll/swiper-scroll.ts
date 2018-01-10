@@ -2,7 +2,7 @@ import {
     Component, OnInit,
     ViewEncapsulation, HostBinding,
     SimpleChanges, Input, EventEmitter, Output,
-    ElementRef, NgZone, Renderer2, ChangeDetectorRef,
+    ElementRef, Renderer2, ChangeDetectorRef,
     ContentChild, AfterViewInit, TemplateRef, ViewChild
 } from '@angular/core';
 import { SwiperConfig } from '../swiper/swiper.config';
@@ -40,7 +40,6 @@ export class SwiperScrollComponent implements OnInit, AfterViewInit {
     isDown: string;
     constructor(
         private el: ElementRef,
-        private zone: NgZone,
         private DEF: SwiperConfig,
         private loader: LoaderService,
         public render: Renderer2,
@@ -85,65 +84,61 @@ export class SwiperScrollComponent implements OnInit, AfterViewInit {
     public _init() {
         this.destroy();
         let that = this;
-        this.zone.runOutsideAngular(() => {
-            this.options = {
-                ...this.options,
-                ...{
-                    speed: 300,
-                    slidesPerView: 'auto',
-                    freeMode: true,
-                    direction: 'vertical',
-                    observer: true,
-                    observeParents: true,
-                    freeModeMomentumBounce: true,
-                    freeModeMomentum: true,
-                    on: {
-                        touchStart: () => {
-                            that.refresh.html('松开刷新');
-                        },
-                        touchMove: function () {
-                            that.refresh.html('松开刷新');
-                        },
-                        reachEnd: function () {
-                            if (this.isDown != 'up') {
+        this.options = {
+            ...this.options,
+            ...{
+                speed: 300,
+                slidesPerView: 'auto',
+                freeMode: true,
+                direction: 'vertical',
+                observer: true,
+                observeParents: true,
+                freeModeMomentumBounce: true,
+                freeModeMomentum: true,
+                on: {
+                    touchStart: () => {
+                        that.refresh.html('松开刷新');
+                    },
+                    touchMove: function () {
+                        that.refresh.html('松开刷新');
+                    },
+                    reachEnd: function () {
+                        if (this.isDown != 'up') {
+                            that.swiper.allowTouchMove = false;
+                            that.swiper.params.virtualTranslate = true;
+                            that.isDown = 'up';
+                            that.up.emit(that.up$);
+                        }
+                    },
+                    touchEnd: function () {
+                        if (this.isDown != 'down' || this.isDown != 'up') {
+                            that.refresh.html('加载完毕');
+                            that.loadmore.html('没有更多了');
+                        }
+                        if (this.isDown != 'down') {
+                            if (this.translate > 80) {
+                                this.setTransition(this.params.seed);
+                                this.setTranslate(80);
+                                that.swiper.touchEventsData.isTouched = false;
                                 that.swiper.allowTouchMove = false;
-                                that.swiper.params.virtualTranslate = true;
-                                that.isDown = 'up';
-                                that.up.emit(that.up$);
-                            }
-                        },
-                        touchEnd: function () {
-                            if (this.isDown != 'down' || this.isDown != 'up') {
-                                that.refresh.html('加载完毕');
-                                that.loadmore.html('没有更多了');
-                            }
-                            if (this.isDown != 'down') {
-                                if (this.translate > 80) {
-                                    this.setTransition(this.params.seed);
-                                    this.setTranslate(80);
-                                    that.swiper.touchEventsData.isTouched = false;
-                                    that.swiper.allowTouchMove = false;
-                                    that.refresh.html('<i class="weui-loading"></i>刷新中...');
-                                    that.isDown = 'down';
-                                    that.down.emit(that.down$);
-                                }
+                                that.refresh.html('<i class="weui-loading"></i>刷新中...');
+                                that.isDown = 'down';
+                                that.down.emit(that.down$);
                             }
                         }
                     }
-                },
-            }
-            this.swiper = new Swiper(this.el.nativeElement, this.options);
-            this.init.emit(this.swiper);
-            this.refresh = this.swiper.$el.find('.refresh');
-            this.loadmore = this.swiper.$el.find('.loadmore');
-        });
+                }
+            },
+        }
+        this.swiper = new Swiper(this.el.nativeElement, this.options);
+        this.init.emit(this.swiper);
+        this.refresh = this.swiper.$el.find('.refresh');
+        this.loadmore = this.swiper.$el.find('.loadmore');
     }
     private destroy() {
         if (this.swiper) {
-            this.zone.runOutsideAngular(() => {
-                this.swiper.destroy(true, false);
-                this.swiper = null;
-            });
+            this.swiper.destroy(true, false);
+            this.swiper = null;
         }
     }
     ngOnInit() {

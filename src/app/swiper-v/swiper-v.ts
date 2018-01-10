@@ -53,7 +53,6 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
     swiper: any;
     constructor(
         private el: ElementRef,
-        private zone: NgZone,
         private DEF: SwiperConfig,
         private loader: LoaderService,
         public render: Renderer2,
@@ -84,39 +83,35 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
     }
     public _init() {
         this.destroy();
-        this.zone.runOutsideAngular(() => {
-            this.getSlideIndex();
-            this.options = {
-                ...{
-                    initialSlide: this.slideIndex,
-                    slidesPerView: 'auto',
-                    resistanceRatio: 0,
-                    slideToClickedSlide: true,
-                    loop: false,
-                    direction: 'vertical',
-                    on: {
-                        init: () => {
-                            this.bottom && this.bottom.show();
-                            this.top && this.top.show();
-                        },
-                        transitionEnd: () => {
-                            this.slideChange.emit(this.swiper);
-                            this.onEnd.emit(this.swiper);
-                        }
+        this.getSlideIndex();
+        this.options = {
+            ...{
+                initialSlide: this.slideIndex,
+                slidesPerView: 'auto',
+                resistanceRatio: 0,
+                slideToClickedSlide: true,
+                loop: false,
+                direction: 'vertical',
+                on: {
+                    init: () => {
+                        this.bottom && this.bottom.show();
+                        this.top && this.top.show();
+                    },
+                    transitionEnd: () => {
+                        this.slideChange.emit(this.swiper);
+                        this.onEnd.emit(this.swiper);
                     }
-                },
-                ...this.options
-            }
-            this.swiper = new Swiper(this.el.nativeElement, this.options);
-            this.init.emit(this.swiper);
-        });
+                }
+            },
+            ...this.options
+        }
+        this.swiper = new Swiper(this.el.nativeElement, this.options);
+        this.init.emit(this.swiper);
     }
     private destroy() {
         if (this.swiper) {
-            this.zone.runOutsideAngular(() => {
-                this.swiper.destroy(true, false);
-                this.swiper = null;
-            });
+            this.swiper.destroy(true, false);
+            this.swiper = null;
         }
     }
     ngOnInit() {

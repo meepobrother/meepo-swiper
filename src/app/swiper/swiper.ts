@@ -2,7 +2,7 @@ import { SwiperConfig } from './swiper.config';
 import {
     Component, ViewEncapsulation, Input, OnChanges,
     SimpleChanges, OnDestroy, EventEmitter, Output,
-    ElementRef, NgZone, OnInit, AfterViewInit, Renderer2,
+    ElementRef, OnInit, AfterViewInit, Renderer2,
     HostBinding, ContentChild, TemplateRef, ChangeDetectorRef,
     ViewChild, ChangeDetectionStrategy
 } from '@angular/core';
@@ -80,7 +80,6 @@ export class SwiperComponent implements AfterViewInit, OnChanges, OnInit, OnDest
     @Input() auto: boolean = true;
     constructor(
         private el: ElementRef,
-        private zone: NgZone,
         private DEF: SwiperConfig,
         private loader: LoaderService,
         public render: Renderer2,
@@ -127,100 +126,95 @@ export class SwiperComponent implements AfterViewInit, OnChanges, OnInit, OnDest
         let that = this;
         if (this.auto || reinit) {
             this.destroy();
-            this.zone.runOutsideAngular(() => {
-                this.options = {
-                    ...{
-                        speed: 300,
-                        slidesPerView: 'auto',
-                        freeMode: true,
-                        direction: 'vertical',
-                        setWrapperSize: true,
-                        scrollbar: {
-                            el: '.swiper-scrollbar',
-                        },
-                        on: {
-                            slideChange: () => {
-                                this.slideChange.emit(this.swiper);
-                            },
-                            slideChangeTransitionStart: () => {
-                                this.slideChangeTransitionStart.emit(this.swiper);
-                            },
-                            slideChangeTransitionEnd: () => {
-                                this.slideChangeTransitionEnd.emit(this.swiper);
-                            },
-                            sliderMove: () => {
-                                this.sliderMove.emit(this.swiper);
-                            },
-                            reachBeginning: () => {
-                                this.reachBeginning.emit(this.swiper);
-                            },
-                            reachEnd: () => {
-                                this.reachEnd.emit(this.swiper);
-                            },
-                            slideNextTransitionStart: () => {
-                                this.slideNextTransitionStart.emit(this.swiper);
-                            },
-                            slideNextTransitionEnd: () => {
-                                this.slideNextTransitionEnd.emit(this.swiper);
-                            },
-                            slidePrevTransitionStart: () => {
-                                this.slidePrevTransitionStart.emit(this.swiper);
-                            },
-                            slidePrevTransitionEnd: () => {
-                                this.slidePrevTransitionEnd.emit(this.swiper);
-                            },
-                            init: () => {
-                                this.init.emit(this.swiper);
-                            },
-                            click: () => {
-                                this.onClick.emit(this.swiper);
-                            },
-                            tap: () => {
-                                this.onTap.emit(this.swiper);
-                            },
-                            doubleTap: () => {
-                                this.doubleTap.emit(this.swiper);
-                            },
-                            progress: () => {
-                                this.progress.emit(this.swiper);
-                            },
-                            touchStart: () => {
-                                this.touchStart.emit(this.swiper);
-                            },
-                            touchMove: function () {
-                                that.touchMove.emit(this.swiper);
-                            },
-                            touchEnd: () => {
-                                if (this.isDown === 'down') {
-                                    this.refresh.html('<i class="weui-loading"></i>刷新中...');
-                                    this.down.emit(this.down$);
-                                }
-                                if (this.isDown === 'up') {
-                                    this.loadmore.html('<i class="weui-loading"></i>加载中...');
-                                    this.up.emit(this.up$);
-                                }
-                                this.touchEnd.emit(that.swiper);
-                            },
-                            momentumBounce: function () {
-                                this.allowTouchMove = true;
-                                this.params.virtualTranslate = false;
-                            }
-                        }
+            this.options = {
+                ...{
+                    speed: 300,
+                    slidesPerView: 'auto',
+                    freeMode: true,
+                    direction: 'vertical',
+                    setWrapperSize: true,
+                    scrollbar: {
+                        el: '.swiper-scrollbar',
                     },
-                    ...this.options
-                }
-                this.swiper = new Swiper(this.el.nativeElement, this.options);
-                this.init.next(this.swiper);
-                
-            });
+                    on: {
+                        slideChange: () => {
+                            this.slideChange.emit(this.swiper);
+                        },
+                        slideChangeTransitionStart: () => {
+                            this.slideChangeTransitionStart.emit(this.swiper);
+                        },
+                        slideChangeTransitionEnd: () => {
+                            this.slideChangeTransitionEnd.emit(this.swiper);
+                        },
+                        sliderMove: () => {
+                            this.sliderMove.emit(this.swiper);
+                        },
+                        reachBeginning: () => {
+                            this.reachBeginning.emit(this.swiper);
+                        },
+                        reachEnd: () => {
+                            this.reachEnd.emit(this.swiper);
+                        },
+                        slideNextTransitionStart: () => {
+                            this.slideNextTransitionStart.emit(this.swiper);
+                        },
+                        slideNextTransitionEnd: () => {
+                            this.slideNextTransitionEnd.emit(this.swiper);
+                        },
+                        slidePrevTransitionStart: () => {
+                            this.slidePrevTransitionStart.emit(this.swiper);
+                        },
+                        slidePrevTransitionEnd: () => {
+                            this.slidePrevTransitionEnd.emit(this.swiper);
+                        },
+                        init: () => {
+                            this.init.emit(this.swiper);
+                        },
+                        click: () => {
+                            this.onClick.emit(this.swiper);
+                        },
+                        tap: () => {
+                            this.onTap.emit(this.swiper);
+                        },
+                        doubleTap: () => {
+                            this.doubleTap.emit(this.swiper);
+                        },
+                        progress: () => {
+                            this.progress.emit(this.swiper);
+                        },
+                        touchStart: () => {
+                            this.touchStart.emit(this.swiper);
+                        },
+                        touchMove: function () {
+                            that.touchMove.emit(this.swiper);
+                        },
+                        touchEnd: () => {
+                            if (this.isDown === 'down') {
+                                this.refresh.html('<i class="weui-loading"></i>刷新中...');
+                                this.down.emit(this.down$);
+                            }
+                            if (this.isDown === 'up') {
+                                this.loadmore.html('<i class="weui-loading"></i>加载中...');
+                                this.up.emit(this.up$);
+                            }
+                            this.touchEnd.emit(that.swiper);
+                        },
+                        momentumBounce: function () {
+                            this.allowTouchMove = true;
+                            this.params.virtualTranslate = false;
+                        }
+                    }
+                },
+                ...this.options
+            }
+            this.swiper = new Swiper(this.el.nativeElement, this.options);
+            this.init.next(this.swiper);
         }
     }
     private destroy() {
         if (this.swiper) {
-            this.zone.runOutsideAngular(() => {
-                this.swiper.destroy(true, false);
-                this.swiper = null;
-            });
+            this.swiper.destroy(true, false);
+            this.swiper = null;
         }
     }
     ngOnInit() {
@@ -246,9 +240,9 @@ export class SwiperComponent implements AfterViewInit, OnChanges, OnInit, OnDest
                 this._init();
             }
         }
-        
+
     }
-   
+
     ngOnDestroy(): void {
         this.destroy();
     }
