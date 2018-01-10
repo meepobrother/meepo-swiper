@@ -40,7 +40,7 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
     @Input() options: any;
 
     @Output() init: EventEmitter<any> = new EventEmitter();
-
+    @Output() slideChange: EventEmitter<any> = new EventEmitter();
     /**
      * swiper 实例
      */
@@ -86,7 +86,9 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
                         init: () => {
                             this.left && this.left.show();
                             this.right && this.right.show();
-                        }
+                        }, slideChange: () => {
+                            this.slideChange.emit(this.swiper);
+                        },
                     }
                 },
                 ...this.options

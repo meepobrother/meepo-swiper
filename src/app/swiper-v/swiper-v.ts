@@ -25,13 +25,21 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
     @ContentChild(SwiperBodyDirective) body: SwiperBodyDirective;
     @ContentChild(SwiperTopDirective) top: SwiperTopDirective;
     @ContentChild(SwiperBottomDirective) bottom: SwiperBottomDirective;
+    _offset: any;
     @Input()
     set offset(val: any) {
-        this.body && this.body.setHeight(val, this.absolute);
-        this.top && this.top.setHeight(val, this.absolute);
-        this.bottom && this.bottom.setHeight(val, this.absolute);
+        this._offset = val;
+        this.changeEleStyle();
     }
-    @Input() absolute: boolean = false;
+    _absolute: boolean = false;
+    @Input()
+    set absolute(val: boolean) {
+        this._absolute = val;
+        this.changeEleStyle();
+    }
+    get absolute() {
+        return this._absolute;
+    }
     @Input() options: any;
     @Output() init: EventEmitter<any> = new EventEmitter();
     /**
@@ -46,6 +54,12 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
         public render: Renderer2,
         public cd: ChangeDetectorRef
     ) { }
+
+    private changeEleStyle() {
+        this.body && this.body.setHeight(this._offset, this._absolute);
+        this.top && this.top.setHeight(this._offset, this._absolute);
+        this.bottom && this.bottom.setHeight(this._offset, this._absolute);
+    }
 
     private initOptions() {
         this.options = Object.assign({}, this.DEF.options, this.options);
@@ -79,7 +93,9 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
                         init: () => {
                             this.bottom && this.bottom.show();
                             this.top && this.top.show();
-                        }
+                        }, slideChange: () => {
+                            this.slideChange.emit(this.swiper);
+                        },
                     }
                 },
                 ...this.options

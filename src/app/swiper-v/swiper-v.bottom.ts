@@ -21,5 +21,6 @@ export class SwiperBottomDirective {
 
     show() {
         this.render.addClass(this.ele.nativeElement, 'shown');
+        this.render.setStyle(this.ele.nativeElement, 'transition', '.3s');
     }
 }

@@ -11,9 +11,11 @@ export class SwiperMenuLeftDirective {
 
     show() {
         this.render.addClass(this.ele.nativeElement, 'shown');
+        this.render.setStyle(this.ele.nativeElement, 'transition', '.3s');
     }
 
     setWidth(val: string) {
         this.render.setStyle(this.ele.nativeElement, 'width', val);
+        this.render.setStyle(this.ele.nativeElement, 'transition', '.3s');
     }
 }
