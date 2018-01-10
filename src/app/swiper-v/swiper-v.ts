@@ -3,7 +3,7 @@ import {
     ViewEncapsulation, HostBinding,
     SimpleChanges, Input, EventEmitter, Output,
     ElementRef, NgZone, Renderer2, ChangeDetectorRef,
-    ContentChild, AfterViewInit
+    ContentChild, AfterViewInit, AfterContentInit
 } from '@angular/core';
 import { SwiperConfig } from '../swiper/swiper.config';
 declare const Swiper: any;
@@ -18,7 +18,7 @@ import { SwiperBottomDirective } from './swiper-v.bottom';
     styleUrls: ['./swiper-v.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class SwiperVComponent implements OnInit, AfterViewInit {
+export class SwiperVComponent implements OnInit, AfterContentInit {
     @HostBinding('class.swiper-container') _container: boolean = true;
     @HostBinding('class.swiper-container-vertical') _vertical: boolean = true;
 
@@ -129,7 +129,7 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
         }
     }
     width: number;
-    ngAfterViewInit() {
+    ngAfterContentInit() {
         this.__init();
     }
     ngOnChanges(changes: SimpleChanges): void {

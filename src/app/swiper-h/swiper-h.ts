@@ -3,7 +3,7 @@ import {
     ViewEncapsulation, HostBinding,
     SimpleChanges, Input, EventEmitter, Output,
     ElementRef, Renderer2, ChangeDetectorRef,
-    ContentChild, AfterViewInit
+    ContentChild, AfterViewInit, AfterContentInit
 } from '@angular/core';
 import { SwiperConfig } from '../swiper/swiper.config';
 declare const Swiper: any;
@@ -19,7 +19,7 @@ import { SwiperMenuRightDirective } from './swiper-h.right';
     styleUrls: ['./swiper-h.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class SwiperHComponent implements OnInit, AfterViewInit {
+export class SwiperHComponent implements OnInit, AfterContentInit {
     @HostBinding('class.swiper-container') _container: boolean = true;
     @HostBinding('class.swiper-container-horizontal') _horizontal: boolean = true;
 
@@ -114,7 +114,7 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         if (!this.options) this.initOptions();
     }
-    ngAfterViewInit() {
+    ngAfterContentInit() {
         this.__init();
         if (this.center) {
             this.center.clickBack(res => {
