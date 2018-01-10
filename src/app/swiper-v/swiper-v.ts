@@ -98,6 +98,7 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
                         },
                         transitionEnd: () => {
                             this.slideChange.emit(this.swiper);
+                            console.log(this.swiper.transtate);
                         }
                     }
                 },
