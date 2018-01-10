@@ -99,6 +99,7 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
                         },
                         touchEnd: () => {
                             this.slideChange.emit(this.swiper);
+                            console.log(this.swiper.translate);
                             if (this.swiper.translate < -100) { 
                                 this.onEnd.emit();
                             }
