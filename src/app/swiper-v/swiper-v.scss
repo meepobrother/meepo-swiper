@@ -1,7 +1,8 @@
 swiper-v {
     position: relative;
-    display: block;
+    display: flex;
     height: 100%;
+    flex-direction: column;
     [swiperTop],
     [swiperBottom] {
         height: 80%;
@@ -13,6 +14,7 @@ swiper-v {
         }
     }
     [swiperBody] {
-        height: 80%;
+        flex: 1;
+        height: 100%;
     }
 }

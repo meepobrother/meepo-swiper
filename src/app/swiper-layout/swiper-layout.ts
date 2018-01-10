@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, EventEmitter, Output, AfterContentInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, AfterContentInit, ViewEncapsulation } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 @Component({
     selector: 'swiper-layout',
     templateUrl: 'swiper-layout.html',
-    styleUrls: ['./swiper-layout.scss']
+    styleUrls: ['./swiper-layout.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class SwiperLayoutComponent implements AfterContentInit {
     @Input() offset: any = 240;
