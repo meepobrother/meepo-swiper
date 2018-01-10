@@ -62,7 +62,7 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
     slideToOption: string;
     slideTo(index: number) {
         if (this.swiper) {
-            this.swiper.slideTo(index, 600, false);
+            this.swiper.slideTo(index, 300, false);
         }
     }
     slideIndex: number = 0;

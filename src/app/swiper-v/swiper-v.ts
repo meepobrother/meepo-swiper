@@ -27,7 +27,6 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
     @ContentChild(SwiperBottomDirective) bottom: SwiperBottomDirective;
     @Input()
     set offset(val: any) {
-        
         this.body && this.body.setHeight(val, this.absolute);
         this.top && this.top.setHeight(val, this.absolute);
         this.bottom && this.bottom.setHeight(val, this.absolute);
@@ -55,7 +54,7 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
     slideToOption: string;
     slideTo(index: number) {
         if (this.swiper) {
-            this.swiper.slideTo(index, 600, false);
+            this.swiper.slideTo(index, 300, false);
         }
     }
     slideIndex: number = 0;
