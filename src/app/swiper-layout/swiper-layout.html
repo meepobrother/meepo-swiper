@@ -1,9 +1,9 @@
-<swiper-h [offset]="offset" (onEnd)="onHEnd($event)">
+<swiper-h [offset]="offset" (init)="onHInit($event)" (onEnd)="onHEnd($event)">
     <div swiperLeft>
         <ng-content select="[left]"></ng-content>
     </div>
     <div swiperCenter>
-        <swiper-v [offset]="offset" (onEnd)="onVEnd($event)">
+        <swiper-v (init)="onVInit($event)" [offset]="offset" (onEnd)="onVEnd($event)">
             <div swiperTop>
                 <ng-content select="[top]"></ng-content>
             </div>

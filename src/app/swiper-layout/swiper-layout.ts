@@ -46,9 +46,21 @@ export class SwiperLayoutComponent implements AfterContentInit {
         this.vSwiper && this.vSwiper.update();
     }
 
+    onVInit(e: any) {
+        if (e) {
+            console.log('v swiper inited');
+            this.vSwiper = e;
+        }
+    }
+    onHInit(e: any) {
+        if (e) {
+            console.log('h swiper inited');
+            this.hSwiper = e;
+        }
+    }
+
     onHEnd(e: any) {
         this.hSwiper = e;
-        console.log('h swiper inited');
         if (e) {
             if (e.isEnd) {
                 this.open$.next('right');
@@ -61,7 +73,6 @@ export class SwiperLayoutComponent implements AfterContentInit {
     }
     onVEnd(e: any) {
         this.vSwiper = e;
-        console.log('v swiper inited');
         if (e) {
             if (e.isEnd) {
                 this.open$.next('bottom');
