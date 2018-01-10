@@ -92,7 +92,6 @@ export class SwiperVComponent implements OnInit, AfterContentInit {
                 direction: 'vertical',
                 observer: true,
                 observeParents: true,
-                autoHeight: true,
                 on: {
                     init: () => {
                         this.bottom && this.bottom.show();
