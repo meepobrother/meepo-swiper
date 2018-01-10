@@ -28,8 +28,10 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
     _offset: any;
     @Input()
     set offset(val: any) {
-        this._offset = val;
-        this.changeEleStyle();
+        if (val) {
+            this._offset = val;
+            this.changeEleStyle();
+        }
     }
     _absolute: boolean = false;
     @Input()
