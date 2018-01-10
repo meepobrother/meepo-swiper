@@ -86,7 +86,7 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
                         init: () => {
                             this.left && this.left.show();
                             this.right && this.right.show();
-                        }, slideChangeTransitionStart: () => {
+                        }, transitionEnd: () => {
                             this.slideChange.emit(this.swiper);
                         },
                     }
