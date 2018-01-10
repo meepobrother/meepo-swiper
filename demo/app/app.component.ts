@@ -3,7 +3,7 @@ import {
   ViewChild, AfterViewInit
 } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { SwiperComponent } from '../../src/app/app';
+import { SwiperScrollComponent } from '../../src/app/app';
 declare const Swiper: any;
 
 let charms: any[] = [{
@@ -109,10 +109,8 @@ import { Index5Component } from './index1/index5';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild('footerContainer') footerContainer: SwiperComponent;
-  @ViewChild('mainContainer') mainContainer: SwiperComponent;
 
-
+  @ViewChild('swiper') swiperMain: SwiperScrollComponent;
 
   advs: any[] = [{
     image: 'https://bpic.588ku.com/element_banner/20/18/01/30e45fbaed76c6d9e1c75f81cbe4e324.jpg',
@@ -171,26 +169,40 @@ export class AppComponent implements AfterViewInit {
   constructor(
     public cd: ChangeDetectorRef,
     public router: Router
-  ) { }
-
-  ngAfterViewInit() { }
-
-
-  up(e: any) {
-    let hasMore = false;
-    this.items = [...this.items, ...items];
-    // 是否还有更多了
-    e.next(hasMore);
-    this.cd.markForCheck();
+  ) {
+    // this.items = items;
+    // setInterval(()=>{
+    //   this.items = [...this.items, ...items];
+    //   this.cd.markForCheck();
+    // },1000);
   }
 
+  ngAfterViewInit() {
+    this.up();
+    this.up();
+    this.up();
+    this.up();
 
+  }
+
+  up(e?: any) {
+    console.log(this.items.length);
+    if (this.items.length < 30) {
+      this.items = [...this.items, ...items];
+      this.swiperMain.setItems(this.items);
+      this.cd.markForCheck();
+    }
+    if (e) {
+      e.next(false);
+    }
+  }
 
   down(e: any) {
-    this.items = items;
-    this.charms = charms;
-    e.next(false);
-    this.cd.markForCheck();
+    setTimeout(() => {
+      this.items = items;
+      e.next(false);
+      this.cd.markForCheck();
+    }, 1000);
   }
 
 }

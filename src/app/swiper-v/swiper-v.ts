@@ -43,7 +43,7 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
     @Input() options: any;
     @Output() init: EventEmitter<any> = new EventEmitter();
     @Output() slideChange: EventEmitter<any> = new EventEmitter();
-    
+
     /**
      * swiper 实例
      */
@@ -95,9 +95,10 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
                         init: () => {
                             this.bottom && this.bottom.show();
                             this.top && this.top.show();
-                        }, transitionEnd: () => {
-                            this.slideChange.emit(this.swiper);
                         },
+                        transitionEnd: () => {
+                            this.slideChange.emit(this.swiper);
+                        }
                     }
                 },
                 ...this.options

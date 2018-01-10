@@ -34,9 +34,15 @@
     </div>
     <div swiperRight></div>
 </swiper-h> -->
-
+<!-- 
 <swiper-v offset="88">
     <div swiperTop></div>
     <div swiperBody></div>
     <div swiperBottom></div>
-</swiper-v>
+</swiper-v> -->
+
+<swiper-scroll #swiper (up)="up($event)" (down)="down($event)">
+    <ng-template let-item>
+        <div>{{item.title}}</div>
+    </ng-template>
+</swiper-scroll>

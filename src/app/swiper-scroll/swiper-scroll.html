@@ -1,0 +1,9 @@
+<div class="swiper-wrapper">
+    <div class="refresh">下拉刷新</div>
+    <div class="swiper-slide" *ngFor="let item of items">
+        <ng-container *ngTemplateOutlet="_ref;context: {$implicit: item}"></ng-container>
+    </div>
+    <div class="swiper-slide loadmore">上拉加载</div>
+</div>
+<div class="swiper-scrollbar"></div>
+<ng-content></ng-content>

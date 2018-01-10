@@ -5,6 +5,8 @@ import { SwiperTabsComponent } from './swiper-tabs/swiper-tabs';
 
 import { SwiperHComponent } from './swiper-h/swiper-h';
 import { SwiperVComponent } from './swiper-v/swiper-v';
+import { SwiperScrollComponent } from './swiper-scroll/swiper-scroll';
+
 
 import { SwiperBodyDirective } from './swiper-v/swiper-v.body';
 import { SwiperBottomDirective } from './swiper-v/swiper-v.bottom';
@@ -39,7 +41,8 @@ import { EventModule } from 'meepo-event';
         SwiperVComponent,
         SwiperBodyDirective,
         SwiperBottomDirective,
-        SwiperTopDirective
+        SwiperTopDirective,
+        SwiperScrollComponent
     ],
     declarations: [
         SwiperComponent,
@@ -51,7 +54,8 @@ import { EventModule } from 'meepo-event';
         SwiperVComponent,
         SwiperBodyDirective,
         SwiperBottomDirective,
-        SwiperTopDirective
+        SwiperTopDirective,
+        SwiperScrollComponent
     ],
     providers: [
 
@@ -76,3 +80,5 @@ export { SwiperConfig } from './swiper/swiper.config';
 
 export { SwiperHComponent } from './swiper-h/swiper-h';
 export { SwiperVComponent } from './swiper-v/swiper-v';
+
+export { SwiperScrollComponent } from './swiper-scroll/swiper-scroll';
