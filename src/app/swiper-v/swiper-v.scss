@@ -4,7 +4,7 @@ swiper-v {
     height: 100%;
     [swiperTop],
     [swiperBottom] {
-        height: 100%;
+        height: 80%;
         visibility: hidden;
         opacity: 0;
         &.shown {
@@ -13,6 +13,6 @@ swiper-v {
         }
     }
     [swiperBody] {
-        height: 100%;
+        height: 80%;
     }
 }

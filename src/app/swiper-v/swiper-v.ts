@@ -33,7 +33,7 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
             this.changeEleStyle();
         }
     }
-    _absolute: boolean = false;
+    _absolute: boolean = true;
     @Input()
     set absolute(val: boolean) {
         this._absolute = val;

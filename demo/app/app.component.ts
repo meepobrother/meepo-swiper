@@ -189,7 +189,7 @@ export class AppComponent implements AfterViewInit {
     console.log(this.items.length);
     if (this.items.length < 30) {
       this.items = [...this.items, ...items];
-      this.swiperMain.setItems(this.items);
+      // this.swiperMain.setItems(this.items);
       this.cd.markForCheck();
     }
     if (e) {

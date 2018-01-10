@@ -28,9 +28,14 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
     @ContentChild(SwiperMenuRightDirective) right: SwiperMenuRightDirective;
     @Input()
     set offset(val: any) {
-        let width = `calc(100% - ${val}px)`;
-        this.left && this.left.setWidth(width);
-        this.right && this.right.setWidth(width);
+        if (typeof val === 'string') {
+            val = parseInt(val);
+        }
+        if (typeof val === 'number') {
+            val = `${val}px`;
+            this.left && this.left.setWidth(val);
+            this.right && this.right.setWidth(val);
+        }
     }
     @Input()
     set width(val: string) {
@@ -41,6 +46,8 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
 
     @Output() init: EventEmitter<any> = new EventEmitter();
     @Output() slideChange: EventEmitter<any> = new EventEmitter();
+    @Output() onEnd: EventEmitter<any> = new EventEmitter();
+
     /**
      * swiper 实例
      */
@@ -84,9 +91,11 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
                     init: () => {
                         this.left && this.left.show();
                         this.right && this.right.show();
-                    }, transitionEnd: () => {
-                        this.slideChange.emit(this.swiper);
                     },
+                    transitionEnd: () => {
+                        this.slideChange.emit(this.swiper);
+                        this.onEnd.emit(this.swiper);
+                    }
                 }
             },
             ...this.options
@@ -105,9 +114,11 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
     }
     ngAfterViewInit() {
         this.__init();
-        this.center.clickBack(res => {
-            this.swiper.slideTo(this.slideIndex, 300);
-        });
+        if (this.center) {
+            this.center.clickBack(res => {
+                this.swiper.slideTo(this.slideIndex, 300);
+            });
+        }
     }
     __init() {
         if (window['Swiper']) {
