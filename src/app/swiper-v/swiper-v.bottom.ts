@@ -10,7 +10,9 @@ export class SwiperBottomDirective {
 
     setHeight(val, absolute: boolean = false) {
         let height = `calc(100% - ${val}px)`;
-        this.render.setStyle(this.ele.nativeElement, 'margin-top', `-${val}px`);
+        if(absolute){
+            this.render.setStyle(this.ele.nativeElement, 'margin-top', `-${val}px`);
+        }
         this.render.setStyle(this.ele.nativeElement, 'transition', '.3s');
     }
 
