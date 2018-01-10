@@ -42,13 +42,14 @@ export class SwiperLayoutComponent implements OnInit {
     }
 
     update(){
-        this.hSwiper.update();
-        this.vSwiper.update();
+        this.hSwiper && this.hSwiper.update();
+        this.vSwiper && this.vSwiper.update();
     }
 
     onHEnd(e: any) {
+        this.hSwiper = e;
+        console.log('h swiper inited');
         if (e) {
-            this.hSwiper = e;
             if (e.isEnd) {
                 this.open$.next('right');
             } else if (e.isBeginning) {
@@ -59,8 +60,9 @@ export class SwiperLayoutComponent implements OnInit {
         }
     }
     onVEnd(e: any) {
+        this.vSwiper = e;
+        console.log('v swiper inited');
         if (e) {
-            this.vSwiper = e;
             if (e.isEnd) {
                 this.open$.next('bottom');
             } else if (e.isBeginning) {
