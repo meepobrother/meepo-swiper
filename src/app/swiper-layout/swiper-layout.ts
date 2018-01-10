@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, AfterContentInit } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
 @Component({
@@ -6,7 +6,7 @@ import { Subject } from 'rxjs/Subject';
     templateUrl: 'swiper-layout.html',
     styleUrls: ['./swiper-layout.scss']
 })
-export class SwiperLayoutComponent implements OnInit {
+export class SwiperLayoutComponent implements AfterContentInit {
     @Input() offset: any = 240;
     @Output() open: EventEmitter<string> = new EventEmitter();
     @Output() init: EventEmitter<any> = new EventEmitter();
@@ -37,11 +37,11 @@ export class SwiperLayoutComponent implements OnInit {
             }
         });
     }
-    ngOnInit() {
+    ngAfterContentInit() {
         this.init.emit(this.open$);
     }
 
-    update(){
+    update() {
         this.hSwiper && this.hSwiper.update();
         this.vSwiper && this.vSwiper.update();
     }
