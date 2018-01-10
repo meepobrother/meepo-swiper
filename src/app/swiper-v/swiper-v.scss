@@ -1,11 +1,9 @@
 swiper-v {
     position: relative;
-    display: flex;
+    display: block;
     height: 100%;
-    flex-direction: column;
     [swiperTop],
     [swiperBottom] {
-        height: 80%;
         visibility: hidden;
         opacity: 0;
         &.shown {
@@ -14,7 +12,6 @@ swiper-v {
         }
     }
     [swiperBody] {
-        flex: 1;
         height: 100%;
     }
 }

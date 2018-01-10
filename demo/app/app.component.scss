@@ -1,14 +1,35 @@
-swiper {
-    display: block;
-    background: #fff;
-}
-
-[swiperLeft],
-[swiperRight] {
-    background: #fff;
-}
-
-[swiperTop],
-[swiperBottom] {
-    background: #fff;
+swiper-layout {
+    position: relative;
+    swiper {
+        display: block;
+        background: #fff;
+    }
+    [swiperLeft],
+    [swiperRight] {
+        background: #fff;
+    }
+    [swiperTop],
+    [swiperBottom] {
+        background: #fff;
+    }
+    .bmap-header,
+    .bmap-footer {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        background: rgba(0, 0, 0, .3);
+        color: #000;
+        z-index: 9;
+    }
+    .bmap-header {
+        top: 0px;
+    }
+    .bmap-footer {
+        bottom: 0px;
+    }
+    [bmap] {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
 }

@@ -8,6 +8,8 @@ import { ArticleModule } from 'meepo-article';
 import { MinirefreshModule } from 'meepo-minirefresh';
 import { LoaderModule } from 'meepo-loader';
 import { DebugerModule } from 'meepo-debuger';
+import { MeepoBmapModule } from 'meepo-bmap';
+
 import { Index1Component } from './index1/index1';
 import { Index2Component } from './index1/index2';
 import { Index3Component } from './index1/index3';
@@ -52,7 +54,8 @@ let routes: Routes = [{
     DebugerModule,
     RouterModule.forRoot(routes, {
       useHash: true
-    })
+    }),
+    MeepoBmapModule
   ],
   providers: [],
   bootstrap: [AppComponent]
