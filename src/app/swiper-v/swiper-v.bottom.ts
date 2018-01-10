@@ -10,7 +10,6 @@ export class SwiperBottomDirective {
 
     setHeight(val, absolute: boolean = false) {
         if (absolute) {
-            this.render.setStyle(this.ele.nativeElement, 'height', `100%`);
             this.render.setStyle(this.ele.nativeElement, 'margin-bottom', `-${val}px`);
         } else {
             let height = `calc(100% - ${val}px)`;

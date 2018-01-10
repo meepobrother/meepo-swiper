@@ -4,7 +4,7 @@ swiper-v {
     height: 100%;
     [swiperTop],
     [swiperBottom] {
-        height: 80%;
+        height: 100%;
         visibility: hidden;
         opacity: 0;
         &.shown {
