@@ -82,7 +82,7 @@ export class SwiperHComponent implements OnInit, AfterContentInit {
         this.getSlideIndex();
         this.options = {
             ...{
-                initialSlide: this.slideIndex,
+                initialSlide: 1,
                 slidesPerView: 'auto',
                 resistanceRatio: 0,
                 slideToClickedSlide: true,
