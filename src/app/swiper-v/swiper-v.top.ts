@@ -13,6 +13,8 @@ export class SwiperTopDirective {
         console.log(absolute);
         if(absolute){
             this.render.setStyle(this.ele.nativeElement, 'margin-bottom', `-${val}px`);
+        } else {
+            this.render.setStyle(this.ele.nativeElement, 'margin-bottom', `0px`);
         }
         this.render.setStyle(this.ele.nativeElement, 'transition', '.3s');
     }
