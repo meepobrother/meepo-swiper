@@ -42,6 +42,8 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
     }
     @Input() options: any;
     @Output() init: EventEmitter<any> = new EventEmitter();
+    @Output() slideChange: EventEmitter<any> = new EventEmitter();
+    
     /**
      * swiper 实例
      */
