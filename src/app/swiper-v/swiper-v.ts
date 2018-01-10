@@ -92,6 +92,8 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
                 slideToClickedSlide: true,
                 loop: false,
                 direction: 'vertical',
+                observer: true,
+                observeParents: true,
                 on: {
                     init: () => {
                         this.bottom && this.bottom.show();

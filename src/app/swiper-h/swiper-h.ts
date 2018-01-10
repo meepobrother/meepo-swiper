@@ -87,6 +87,8 @@ export class SwiperHComponent implements OnInit, AfterViewInit {
                 resistanceRatio: 0,
                 slideToClickedSlide: true,
                 loop: false,
+                observer: true,
+                observeParents: true,
                 on: {
                     init: () => {
                         this.left && this.left.show();
