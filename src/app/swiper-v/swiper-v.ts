@@ -43,6 +43,8 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
     @Input() options: any;
     @Output() init: EventEmitter<any> = new EventEmitter();
     @Output() slideChange: EventEmitter<any> = new EventEmitter();
+    @Output() onEnd: EventEmitter<any> = new EventEmitter();
+    
 
     /**
      * swiper 实例
@@ -99,6 +101,9 @@ export class SwiperVComponent implements OnInit, AfterViewInit {
                         touchEnd: () => {
                             this.slideChange.emit(this.swiper);
                             console.log(this.swiper.translate);
+                            if (this.swiper.translate < -100) { 
+                                this.onEnd.emit();
+                            }
                         }
                     }
                 },
