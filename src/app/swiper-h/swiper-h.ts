@@ -89,6 +89,7 @@ export class SwiperHComponent implements OnInit, AfterContentInit {
                 loop: false,
                 observer: true,
                 observeParents: true,
+                autoHeight: true,
                 on: {
                     init: () => {
                         this.left && this.left.show();
