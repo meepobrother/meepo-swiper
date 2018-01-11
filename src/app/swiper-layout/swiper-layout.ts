@@ -21,8 +21,11 @@ export class SwiperLayoutComponent implements AfterContentInit {
             this.open.emit(res);
         });
         this.open$.subscribe(res => {
-            if (res === 'center' || res === 'main') {
-                this.toMain();
+            if (res === 'center') {
+                this.toCenter();
+            }
+            if (res === 'body') {
+                this.toBody();
             }
             if (res === 'left') {
                 this.toLeft();
@@ -49,13 +52,11 @@ export class SwiperLayoutComponent implements AfterContentInit {
 
     onVInit(e: any) {
         if (e) {
-            console.log('v swiper inited');
             this.vSwiper = e;
         }
     }
     onHInit(e: any) {
         if (e) {
-            console.log('h swiper inited');
             this.hSwiper = e;
         }
     }
