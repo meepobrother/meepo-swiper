@@ -14,6 +14,11 @@ export class SwiperLayoutComponent implements AfterContentInit {
     onOpen$: Subject<string> = new Subject();
     open$: Subject<string> = new Subject();
 
+    @Input() hasLeft: boolean = true;
+    @Input() hasRight: boolean = true;
+    @Input() hasTop: boolean = true;
+    @Input() hasBottom: boolean = true;
+
     hSwiper: any;
     vSwiper: any;
     constructor() {
@@ -65,9 +70,17 @@ export class SwiperLayoutComponent implements AfterContentInit {
         this.hSwiper = e;
         if (e) {
             if (e.isEnd) {
-                this.open$.next('right');
+                if (this.hasRight) {
+                    this.open$.next('right');
+                } else {
+                    this.open$.next('center');
+                }
             } else if (e.isBeginning) {
-                this.open$.next('left');
+                if (this.hasLeft) {
+                    this.open$.next('left');
+                }else{
+                    this.open$.next('center');
+                }
             } else {
                 this.open$.next('center');
             }
@@ -77,9 +90,17 @@ export class SwiperLayoutComponent implements AfterContentInit {
         this.vSwiper = e;
         if (e) {
             if (e.isEnd) {
-                this.open$.next('bottom');
+                if (this.hasBottom) {
+                    this.open$.next('bottom');
+                } else {
+                    this.open$.next('body');
+                }
             } else if (e.isBeginning) {
-                this.open$.next('top');
+                if (this.hasTop) {
+                    this.open$.next('top');
+                }else{
+                    this.open$.next('body');
+                }
             } else {
                 this.open$.next('body');
             }
@@ -110,26 +131,50 @@ export class SwiperLayoutComponent implements AfterContentInit {
     }
 
     toCenter() {
-        this.hSwiper.slideTo(1, 300, false);
+        if (this.hasLeft) {
+            this.hSwiper.slideTo(1, 300, false);
+        } else {
+            this.hSwiper.slideTo(0, 300, false);
+        }
     }
 
     toLeft() {
-        this.hSwiper.slideTo(0, 300, false);
+        if (this.hasLeft) {
+            this.hSwiper.slideTo(0, 300, false);
+        }
     }
 
     toRight() {
-        this.hSwiper.slideTo(2, 300, false);
+        if (this.hasRight) {
+            if (this.hasLeft) {
+                this.hSwiper.slideTo(2, 300, false);
+            } else {
+                this.hSwiper.slideTo(1, 300, false);
+            }
+        }
     }
 
     toBody() {
-        this.vSwiper.slideTo(1, 300, false);
+        if (this.hasTop) {
+            this.vSwiper.slideTo(1, 300, false);
+        } else {
+            this.vSwiper.slideTo(0, 300, false);
+        }
     }
 
     toTop() {
-        this.vSwiper.slideTo(0, 300, false);
+        if (this.hasLeft) {
+            this.vSwiper.slideTo(0, 300, false);
+        }
     }
 
     toBottom() {
-        this.vSwiper.slideTo(2, 300, false);
+        if (this.hasBottom) {
+            if (this.hasTop) {
+                this.vSwiper.slideTo(2, 300, false);
+            } else {
+                this.vSwiper.slideTo(1, 300, false);
+            }
+        }
     }
 }

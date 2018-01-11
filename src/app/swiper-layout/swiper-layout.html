@@ -1,21 +1,21 @@
 <swiper-h [offset]="offset" (init)="onHInit($event)" (onEnd)="onHEnd($event)">
-    <div swiperLeft>
+    <div *ngIf="hasLeft" swiperLeft>
         <ng-content select="[left]"></ng-content>
     </div>
     <div swiperCenter>
         <swiper-v (init)="onVInit($event)" [offset]="offset" (onEnd)="onVEnd($event)">
-            <div swiperTop>
+            <div *ngIf="hasTop" swiperTop>
                 <ng-content select="[top]"></ng-content>
             </div>
             <div swiperBody>
                 <ng-content></ng-content>
             </div>
-            <div swiperBottom>
+            <div *ngIf="hasBottom" swiperBottom>
                 <ng-content select="[bottom]"></ng-content>
             </div>
         </swiper-v>
     </div>
-    <div swiperRight>
+    <div *ngIf="hasRight" swiperRight>
         <ng-content select="[right]"></ng-content>
     </div>
 </swiper-h>
